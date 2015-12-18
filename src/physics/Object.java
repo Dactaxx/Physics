@@ -23,8 +23,8 @@ public class Object {
 //		Physics.objects.remove(this);
 		for(int i = 0; i < Physics.objects.size(); i++) {
 			if(!Physics.objects.get(i).equals(this)) {
-				Physics.objects.get(i).xvel += -((G * this.mass * Physics.objects.get(i).mass) / Math.pow(Math.sqrt(Math.pow(Physics.objects.get(i).x - this.x ,2) + Math.pow(Physics.objects.get(i).y - this.y, 2)), 2.1)) * (Physics.objects.get(i).x - this.x) * (this.mass / Physics.objects.get(i).mass);
-				Physics.objects.get(i).yvel += -((G * this.mass * Physics.objects.get(i).mass) / Math.pow(Math.sqrt(Math.pow(Physics.objects.get(i).x - this.x ,2) + Math.pow(Physics.objects.get(i).y - this.y, 2)), 2.1)) * (Physics.objects.get(i).y - this.y) * (this.mass /Physics.objects.get(i).mass);
+				Physics.objects.get(i).xvel += -((G * this.mass * Physics.objects.get(i).mass) / Math.pow(Math.sqrt(Math.pow(Physics.objects.get(i).x - this.x ,2) + Math.pow(Physics.objects.get(i).y - this.y, 2)), 2.05)) * (Physics.objects.get(i).x - this.x) * (this.mass / Physics.objects.get(i).mass);
+				Physics.objects.get(i).yvel += -((G * this.mass * Physics.objects.get(i).mass) / Math.pow(Math.sqrt(Math.pow(Physics.objects.get(i).x - this.x ,2) + Math.pow(Physics.objects.get(i).y - this.y, 2)), 2.05)) * (Physics.objects.get(i).y - this.y) * (this.mass /Physics.objects.get(i).mass);
 //				System.out.println(-((G * this.mass * Physics.objects.get(i).mass) / Math.sqrt(Math.pow(Physics.objects.get(i).x - this.x ,2) + Math.pow(Physics.objects.get(i).y - this.y, 2))) * (Physics.objects.get(i).x - this.x));
 //				System.out.println(Physics.objects.size());
 				
