@@ -15,8 +15,11 @@ public class Physics extends JPanel implements Runnable {
 
 	public static void main(String[] args) {
 		start();
-		objects.add(new Object(500, 500, 500));
-		objects.add(new Object(1800, 200, 500));
+//		objects.add(new Object(Window.width / 2, Window.height / 2, 0, 0, 500));
+		objects.add(new Object(700, 200, 1, 1, 100));
+		objects.add(new Object(750, 250, -3, 3, 5));
+		objects.add(new Object(200, 1000, 0, -.75, 100));
+//		objects.add(new Object(1800, 1000, 0, -100, 120));
 		
 	}
 
@@ -37,6 +40,8 @@ public class Physics extends JPanel implements Runnable {
 			if(now - then >= 16666667) {
 				tick();
 				Window.frame.repaint();
+				then = System.nanoTime();
+//				System.out.println("test");
 				
 			}
 			
