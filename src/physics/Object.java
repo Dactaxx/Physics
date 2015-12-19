@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 public class Object {
 	public double x, y, xvel, yvel, size, volume, mass, density;
 	
-	public static double G = 5 * Math.pow(10, -18);
+	public static double G = 5 * Math.pow(10, -16);
 	
 	public Object(double x, double y, double xvel, double yvel, double size) {
 		this.x = x;
@@ -30,6 +30,25 @@ public class Object {
 				
 			}
 			
+			double distance = Math.sqrt(Math.pow(this.x - Physics.objects.get(i).x, 2) + Math.pow(this.y - Physics.objects.get(i).y, 2));
+			
+			if(!Physics.objects.get(i).equals(this) && distance < this.size + Physics.objects.get(i).size) {
+//				System.out.println((Math.sqrt(Math.pow(this.x - Physics.objects.get(i).x, 2) + Math.pow(this.y - Physics.objects.get(i).y, 2))) + "; " + (this.size + Physics.objects.get(i).size));
+/*				this.x -= ((this.size + Physics.objects.get(i).size) / distance) * this.xvel;
+				this.y -= ((this.size + Physics.objects.get(i).size) / distance) * this.yvel;
+				
+				Physics.objects.get(i).x -= ((this.size + Physics.objects.get(i).size) / distance) * Physics.objects.get(i).xvel;
+				Physics.objects.get(i).y -= ((this.size + Physics.objects.get(i).size) / distance) * Physics.objects.get(i).yvel;
+*/				
+				this.xvel = -(this.xvel * (this.mass - Physics.objects.get(i).mass) + (2 * Physics.objects.get(i).mass * Physics.objects.get(i).xvel)) / (this.mass + Physics.objects.get(i).mass);
+				this.xvel = -(this.yvel * (this.mass - Physics.objects.get(i).mass) + (2 * Physics.objects.get(i).mass * Physics.objects.get(i).yvel)) / (this.mass + Physics.objects.get(i).mass);
+				
+				Physics.objects.get(i).xvel = (Physics.objects.get(i).xvel * (Physics.objects.get(i).mass - this.mass) + (2 * this.mass * this.xvel)) / (Physics.objects.get(i).mass + this.mass);
+				Physics.objects.get(i).yvel = (Physics.objects.get(i).yvel * (Physics.objects.get(i).mass - this.mass) + (2 * this.mass * this.yvel)) / (Physics.objects.get(i).mass + this.mass);
+				
+			}
+			
+ 
 		}
 		
 //		System.out.println(this.xvel + "; " + this.yvel);
@@ -43,7 +62,7 @@ public class Object {
 	
 	public void render(Graphics2D g2d) {
 		g2d.setColor(new Color(255, 150, 0));
-		g2d.fillOval((int)(this.x - size / 2), (int)(this.y - size / 2), (int)size, (int)size);
+		g2d.fillOval((int)(this.x - size), (int)(this.y - size), (int)size * 2, (int)size * 2);
 		
 	}
 	
